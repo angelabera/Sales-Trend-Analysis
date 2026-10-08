@@ -85,3 +85,47 @@ print(df["Payment_Method"].value_counts())
 
 print("\nOrder status:")
 print(df["Order_Status"].value_counts())
+
+# FEATURE ENGINEERING
+print("\n" + "=" * 60)
+print("FEATURE ENGINEERING")
+print("=" * 60)
+
+# Extract date-related features
+df["Year"] = df["Order_Date"].dt.year
+df["Month"] = df["Order_Date"].dt.month
+df["Month_Name"] = df["Order_Date"].dt.month_name()
+df["Quarter"] = df["Order_Date"].dt.quarter
+df["Day"] = df["Order_Date"].dt.day
+df["Day_Name"] = df["Order_Date"].dt.day_name()
+
+# Average Order Value
+df["AOV"] = df["Revenue"]
+
+print("\nNew columns created:")
+print([
+    "Year",
+    "Month",
+    "Month_Name",
+    "Quarter",
+    "Day",
+    "Day_Name",
+    "AOV"
+])
+
+print("\nSample after feature engineering:")
+print(
+    df[
+        [
+            "Order_Date",
+            "Year",
+            "Month",
+            "Month_Name",
+            "Quarter",
+            "Day",
+            "Day_Name",
+            "Revenue",
+            "AOV"
+        ]
+    ].head()
+)
